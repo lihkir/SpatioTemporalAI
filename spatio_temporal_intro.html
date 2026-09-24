@@ -1,0 +1,658 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Modelos Espacio-Temporales &#8212; Modelos Espacio-Temporales</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=8c6b312c" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=530fe47d" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'spatio_temporal_intro';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/custom.js?v=14184634"></script>
+    <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. Gradient Boosting (LightGBM)" href="lightgbm.html" />
+    <link rel="prev" title="Profesor: Dr. Lihki Rubio" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/fotolihki.jpg" class="logo__image only-light" alt="Modelos Espacio-Temporales - Home"/>
+    <img src="_static/fotolihki.jpg" class="logo__image only-dark pst-js-only" alt="Modelos Espacio-Temporales - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Profesor: Dr. Lihki Rubio
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Modelos Espacio-Temporales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lightgbm.html">2. Gradient Boosting (LightGBM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">3. Bibliografía</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/spatio_temporal_intro.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modelos Espacio-Temporales</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#de-los-modelos-clasicos-al-modelado-espacio-temporal">1.1. De los modelos clásicos al modelado espacio-temporal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-que-veremos-a-lo-largo-del-curso">1.2. Aplicaciones que veremos a lo largo del curso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-del-curso">1.3. Contenido del curso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-entornos-para-tensorflow">1.4. Configuración de entornos para TensorFlow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-tensorflow-2-10-en-windows-native">1.4.1. Instalación de <code class="docutils literal notranslate"><span class="pre">TensorFlow</span> <span class="pre">2.10</span></code> en <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">Native</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-tensorflow-geq-2-11-en-wsl2">1.4.2. Instalación de <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code> <span class="math notranslate nohighlight">\(\geq\)</span> <code class="docutils literal notranslate"><span class="pre">2.11</span></code> en <code class="docutils literal notranslate"><span class="pre">WSL2</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-tensorflow-en-mac">1.4.3. Instalación de <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code> en <code class="docutils literal notranslate"><span class="pre">Mac</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generacion-de-jupyter-books-para-los-entregables-de-modelos-espacio-temporales">1.4.4. Generación de <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">Books</span></code> para los entregables de <strong>Modelos Espacio-Temporales</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-docker-y-despliegue-de-modelos">1.4.5. Introducción a <code class="docutils literal notranslate"><span class="pre">Docker</span></code> y despliegue de modelos</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modelos-espacio-temporales">
+<h1><span class="section-number">1. </span>Modelos Espacio-Temporales<a class="headerlink" href="#modelos-espacio-temporales" title="Link to this heading">#</a></h1>
+<div class="tip admonition">
+<p class="admonition-title">Introducción</p>
+<ul class="simple">
+<li><p>Durante décadas, el análisis de fenómenos que varían en el espacio y en el tiempo (calidad del aire, clima, tráfico, epidemias, recursos energéticos) dependía de modelos que trataban la dimensión <em><strong>espacial</strong></em> y la dimensión <em><strong>temporal</strong></em> de forma separada, o que asumían independencia entre observaciones cercanas. Los <em><strong>Modelos Espacio-Temporales</strong></em> cambian radicalmente este paradigma: en lugar de ignorar la estructura de dependencia entre ubicaciones y momentos en el tiempo, se construyen <em><strong>arquitecturas y modelos estadísticos</strong></em> capaces de <em><strong>capturar simultáneamente la correlación espacial y la dinámica temporal</strong></em> directamente a partir de datos georreferenciados y series de tiempo multivariadas.</p></li>
+<li><p>Cada componente de un modelo espacio-temporal captura una parte distinta del fenómeno: la <em><strong>dependencia espacial</strong></em> entre estaciones o ubicaciones cercanas, y la <em><strong>dependencia temporal</strong></em> entre observaciones consecutivas. Esta capacidad de modelar conjuntamente ambas dimensiones, combinada con la disponibilidad de grandes volúmenes de datos geoespaciales y de cómputo acelerado por GPU, es la razón por la cual los modelos espacio-temporales se han convertido en una herramienta clave para la predicción y el monitoreo ambiental, energético y de salud pública en la última década.</p></li>
+</ul>
+</div>
+<section id="de-los-modelos-clasicos-al-modelado-espacio-temporal">
+<h2><span class="section-number">1.1. </span>De los modelos clásicos al modelado espacio-temporal<a class="headerlink" href="#de-los-modelos-clasicos-al-modelado-espacio-temporal" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>En el curso de aprendizaje supervisado trabajamos con modelos que reciben un conjunto <em><strong>fijo</strong></em> de características diseñadas explícitamente, asumiendo generalmente que las observaciones son independientes entre sí. Estos modelos son interpretables y eficientes, pero ignoran la <em><strong>autocorrelación espacial</strong></em> (observaciones cercanas geográficamente tienden a parecerse) y la <em><strong>autocorrelación temporal</strong></em> (observaciones cercanas en el tiempo tienden a parecerse), limitando su desempeño cuando los datos tienen estructura de red o de campo aleatorio.</p></li>
+<li><p>Cuando los datos provienen de <em><strong>múltiples ubicaciones monitoreadas a lo largo del tiempo</strong></em> (estaciones de calidad del aire, sensores meteorológicos, nodos de tráfico, casos epidemiológicos por región), modelar cada serie de forma aislada se vuelve ineficiente e inexacto. El modelado espacio-temporal resuelve este problema incorporando <em><strong>estructuras de dependencia espacial (kriging, procesos gaussianos, grafos) y temporal (recurrencia, atención, procesos autorregresivos)</strong></em>, optimizando de forma conjunta la representación espacial y la dinámica temporal.</p></li>
+</ul>
+<div class="important admonition">
+<p class="admonition-title">Observación</p>
+<ul class="simple">
+<li><p>El modelado espacio-temporal <em><strong>no reemplaza</strong></em> los fundamentos estadísticos y de optimización vistos previamente; los <em><strong>extiende</strong></em>. Conceptos como sobreajuste, generalización, validación cruzada y selección de modelos siguen siendo centrales, pero ahora se aplican considerando <em><strong>dependencias entre observaciones vecinas en el espacio y en el tiempo</strong></em>, lo que exige un manejo más cuidadoso de la validación cruzada espacial, la regularización y la elección de estructuras de covarianza o de vecindad.</p></li>
+</ul>
+</div>
+</section>
+<section id="aplicaciones-que-veremos-a-lo-largo-del-curso">
+<h2><span class="section-number">1.2. </span>Aplicaciones que veremos a lo largo del curso<a class="headerlink" href="#aplicaciones-que-veremos-a-lo-largo-del-curso" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>El poder de los Modelos Espacio-Temporales se aprecia mejor a través de sus aplicaciones. A lo largo del curso trabajaremos, entre otros, con los siguientes casos de uso:</p>
+<ul>
+<li><p><em><strong>Medio ambiente</strong></em>: predicción de la calidad del aire (PM2.5, PM10, ozono) a partir de redes de estaciones de monitoreo y datos satelitales.</p></li>
+<li><p><em><strong>Energías renovables</strong></em>: pronóstico de velocidad del viento y radiación solar considerando la correlación entre estaciones cercanas.</p></li>
+<li><p><em><strong>Salud pública</strong></em>: modelado de la propagación espacio-temporal de enfermedades y epidemias entre regiones.</p></li>
+<li><p><em><strong>Clima e hidrología</strong></em>: interpolación y pronóstico de variables climáticas (temperatura, precipitación) sobre campos espaciales continuos.</p></li>
+<li><p><em><strong>Transporte y movilidad</strong></em>: predicción de flujos de tráfico y patrones de movilidad urbana sobre redes viales.</p></li>
+<li><p><em><strong>Aprendizaje profundo espacio-temporal</strong></em>: redes convolucionales recurrentes (ConvLSTM), grafos neuronales (GNN) y arquitecturas basadas en atención para datos espacio-temporales.</p></li>
+</ul>
+</li>
+<li><p>Cada uno de estos bloques combina <em><strong>fundamento teórico riguroso</strong></em> (procesos gaussianos, kriging, modelos autorregresivos espaciales, derivaciones y algoritmos) con <em><strong>implementación práctica</strong></em> en <code class="docutils literal notranslate"><span class="pre">Python</span></code>, usando <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code>/<code class="docutils literal notranslate"><span class="pre">Keras</span></code> y librerías especializadas en análisis geoespacial, y en algunos casos <code class="docutils literal notranslate"><span class="pre">PySpark</span></code> para escenarios de gran volumen de datos.</p></li>
+</ul>
+</section>
+<section id="contenido-del-curso">
+<h2><span class="section-number">1.3. </span>Contenido del curso<a class="headerlink" href="#contenido-del-curso" title="Link to this heading">#</a></h2>
+<div class="tip admonition">
+<p class="admonition-title">Módulos</p>
+<ol class="arabic simple">
+<li><p><em><strong>Fundamentos de procesos espacio-temporales</strong></em>: conceptos de autocorrelación espacial, autocorrelación temporal y estacionariedad.</p></li>
+<li><p><em><strong>Análisis exploratorio de datos espacio-temporales</strong></em>: visualización de campos espaciales, semivariogramas y correlogramas.</p></li>
+<li><p><em><strong>Interpolación espacial (Kriging y procesos gaussianos)</strong></em>: modelado de la dependencia espacial y predicción en ubicaciones no observadas.</p></li>
+<li><p><em><strong>Modelos autorregresivos espaciales</strong></em>: modelos SAR, CAR y su relación con estructuras de vecindad y grafos.</p></li>
+<li><p><em><strong>Series de tiempo multivariadas y modelos dinámicos</strong></em>: VAR, espacio-estado y filtros de Kalman aplicados a redes de sensores.</p></li>
+<li><p><em><strong>Redes Neuronales Recurrentes (RNN) y LSTM para dinámica temporal</strong></em>: modelado de secuencias, <code class="docutils literal notranslate"><span class="pre">backpropagation</span> <span class="pre">through</span> <span class="pre">time</span></code> y el problema del desvanecimiento/explosión de gradientes.</p></li>
+<li><p><em><strong>Redes convolucionales recurrentes (ConvLSTM) y modelos híbridos CNN-RNN</strong></em>: captura conjunta de estructura espacial y dinámica temporal.</p></li>
+<li><p><em><strong>Redes neuronales de grafos (GNN) para datos espacio-temporales</strong></em>: modelado de dependencias sobre redes de sensores y estaciones.</p></li>
+<li><p><em><strong>Mecanismos de atención y Transformers espacio-temporales</strong></em>: <code class="docutils literal notranslate"><span class="pre">self-attention</span></code>, <code class="docutils literal notranslate"><span class="pre">multi-head</span> <span class="pre">attention</span></code> y su aplicación en pronóstico multivariado.</p></li>
+<li><p><em><strong>Proyectos integradores aplicados</strong></em>: calidad del aire, energías renovables, salud pública y tráfico urbano.</p></li>
+<li><p><em><strong>Fundamentos de despliegue (MLOps)</strong></em>: <code class="docutils literal notranslate"><span class="pre">FastAPI</span></code>, <code class="docutils literal notranslate"><span class="pre">Docker</span></code>, <code class="docutils literal notranslate"><span class="pre">CI/CD</span></code> y monitoreo básico de modelos espacio-temporales en producción.</p></li>
+</ol>
+</div>
+</section>
+<section id="configuracion-de-entornos-para-tensorflow">
+<h2><span class="section-number">1.4. </span>Configuración de entornos para TensorFlow<a class="headerlink" href="#configuracion-de-entornos-para-tensorflow" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Usaremos el mismo entorno de trabajo configurado para el curso de aprendizaje automático. Si ya lo tiene instalado y funcionando, puede pasar directamente a la siguiente sección.</p></li>
+</ul>
+<section id="instalacion-de-tensorflow-2-10-en-windows-native">
+<h3><span class="section-number">1.4.1. </span>Instalación de <code class="docutils literal notranslate"><span class="pre">TensorFlow</span> <span class="pre">2.10</span></code> en <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">Native</span></code><a class="headerlink" href="#instalacion-de-tensorflow-2-10-en-windows-native" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Tutorial: <a class="reference external" href="https://www.youtube.com/watch?v=jzTWjXm8hsc&amp;amp;ab_channel=LihkiJoseRubioOrtega">Tutorial 1. Machine Learning. UN 202330</a> y <a class="reference external" href="https://github.com/lihkir/Data/blob/main/TutorialesMachineLearning.pdf">TutorialesMachineLearning.pdf</a></p></li>
+<li><p>Link: <a class="reference external" href="https://www.tensorflow.org/install/pip#windows-native">TensorFlow Windows Native</a></p></li>
+</ul>
+</section>
+<section id="instalacion-de-tensorflow-geq-2-11-en-wsl2">
+<h3><span class="section-number">1.4.2. </span>Instalación de <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code> <span class="math notranslate nohighlight">\(\geq\)</span> <code class="docutils literal notranslate"><span class="pre">2.11</span></code> en <code class="docutils literal notranslate"><span class="pre">WSL2</span></code><a class="headerlink" href="#instalacion-de-tensorflow-geq-2-11-en-wsl2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Tutorial: <a class="reference external" href="https://www.youtube.com/watch?v=VOJq98BLjb8&amp;amp;ab_channel=TechJotters">Install TensorFlow GPU on WSL2 (Windows Subsystem for Linux) - Step by Step Tutorial</a></p></li>
+<li><p>Link: <a class="reference external" href="https://www.tensorflow.org/install/pip#windows-wsl2">TensorFlow WSL2</a></p></li>
+</ul>
+</section>
+<section id="instalacion-de-tensorflow-en-mac">
+<h3><span class="section-number">1.4.3. </span>Instalación de <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code> en <code class="docutils literal notranslate"><span class="pre">Mac</span></code><a class="headerlink" href="#instalacion-de-tensorflow-en-mac" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Tutorial: <a class="reference external" href="https://www.youtube.com/watch?v=5DgWvU0p2bk&amp;amp;ab_channel=JeffHeaton">How to Install TensorFlow GPU for Mac M1/M2 with Conda</a></p></li>
+<li><p>Link: <a class="reference external" href="https://www.tensorflow.org/install/pip#macos">TensorFlow MacOS</a></p></li>
+</ul>
+<ul class="simple">
+<li><p>Verifique que su entorno reconoce <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code> y, si aplica, la <code class="docutils literal notranslate"><span class="pre">GPU</span></code> disponible antes de continuar con el resto del curso.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verificamos la version de TensorFlow instalada en el entorno actual</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+
+<span class="c1"># Imprimimos la version de TensorFlow para confirmar que la instalacion fue exitosa</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TensorFlow version:&quot;</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+
+<span class="c1"># Listamos los dispositivos fisicos de tipo GPU detectados por TensorFlow</span>
+<span class="n">gpus</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="s2">&quot;GPU&quot;</span><span class="p">)</span>
+
+<span class="c1"># Si la lista de GPUs no esta vacia, el entorno tiene aceleracion por GPU disponible</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">gpus</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GPU disponible:&quot;</span><span class="p">,</span> <span class="n">gpus</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No se detecto GPU; TensorFlow correra sobre CPU.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="generacion-de-jupyter-books-para-los-entregables-de-modelos-espacio-temporales">
+<h3><span class="section-number">1.4.4. </span>Generación de <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">Books</span></code> para los entregables de <strong>Modelos Espacio-Temporales</strong><a class="headerlink" href="#generacion-de-jupyter-books-para-los-entregables-de-modelos-espacio-temporales" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Tutorial: <a class="reference external" href="https://www.youtube.com/watch?v=m_wCMg2EmdQ&amp;amp;ab_channel=LihkiJoseRubioOrtega">Tutorial 2. Machine Learning. UN 202330</a> y <a class="reference external" href="https://github.com/lihkir/Data/blob/main/TutorialesMachineLearning.pdf">TutorialesMachineLearning.pdf</a></p></li>
+<li><p>Link: <a class="reference external" href="https://jupyterbook.org/en/stable/start/your-first-book.html">Create your first book</a></p></li>
+</ul>
+</section>
+<section id="introduccion-a-docker-y-despliegue-de-modelos">
+<h3><span class="section-number">1.4.5. </span>Introducción a <code class="docutils literal notranslate"><span class="pre">Docker</span></code> y despliegue de modelos<a class="headerlink" href="#introduccion-a-docker-y-despliegue-de-modelos" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://lihkir.github.io/DataVizPython/postgresql.html#instalacion-y-uso-de-docker">Instalación y uso de Docker</a></p></li>
+<li><p>El despliegue de modelos espacio-temporales en contenedores (<code class="docutils literal notranslate"><span class="pre">Docker</span></code>) y su exposición a través de servicios web (<code class="docutils literal notranslate"><span class="pre">FastAPI</span></code>) se abordará en el módulo de MLOps hacia el final del curso.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "tf"
+        },
+        kernelOptions: {
+            name: "tf",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'tf'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Profesor: Dr. Lihki Rubio</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lightgbm.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Gradient Boosting (LightGBM)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#de-los-modelos-clasicos-al-modelado-espacio-temporal">1.1. De los modelos clásicos al modelado espacio-temporal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-que-veremos-a-lo-largo-del-curso">1.2. Aplicaciones que veremos a lo largo del curso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-del-curso">1.3. Contenido del curso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-entornos-para-tensorflow">1.4. Configuración de entornos para TensorFlow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-tensorflow-2-10-en-windows-native">1.4.1. Instalación de <code class="docutils literal notranslate"><span class="pre">TensorFlow</span> <span class="pre">2.10</span></code> en <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">Native</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-tensorflow-geq-2-11-en-wsl2">1.4.2. Instalación de <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code> <span class="math notranslate nohighlight">\(\geq\)</span> <code class="docutils literal notranslate"><span class="pre">2.11</span></code> en <code class="docutils literal notranslate"><span class="pre">WSL2</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-tensorflow-en-mac">1.4.3. Instalación de <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code> en <code class="docutils literal notranslate"><span class="pre">Mac</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generacion-de-jupyter-books-para-los-entregables-de-modelos-espacio-temporales">1.4.4. Generación de <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">Books</span></code> para los entregables de <strong>Modelos Espacio-Temporales</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-docker-y-despliegue-de-modelos">1.4.5. Introducción a <code class="docutils literal notranslate"><span class="pre">Docker</span></code> y despliegue de modelos</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Lihki Rubio, Ph.D.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>Lihki Rubio, Ph.D. All rights reserved.</p>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
