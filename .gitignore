@@ -2,3 +2,5 @@ docs/_build/
 docs/_sources
 .ipynb_checkpoints/
 __pycache__/
+*.ipynb
+*.sh
